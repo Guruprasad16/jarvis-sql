@@ -39,4 +39,28 @@ router.post('/insertModel', (req, res) => {
     }
 });
 
+router.post('/retrieveModels', (req, res)=>{
+    try {
+    
+        Model.findAll()
+        .then((respone)=>{
+            res.status(200).json({
+                message: "Models are retrieved",
+                data: respone
+            })
+        })
+        .catch((e)=>{
+            res.status(500).json({
+                message: "Models not retrieved",
+                error: e
+            })
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: "Models not retrieved!!",
+            error: error
+        })
+    }
+})
+
 module.exports = router;

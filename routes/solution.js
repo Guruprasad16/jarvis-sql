@@ -41,4 +41,28 @@ router.post('/insertSolution', (req, res) => {
     }
 });
 
+router.post('/retrieveSolutions', (req, res)=>{
+    try {
+    
+        Solution.findAll()
+        .then((respone)=>{
+            res.status(200).json({
+                message: "Solutions are retrieved",
+                data: respone
+            })
+        })
+        .catch((e)=>{
+            res.status(500).json({
+                message: "Solutions not retrieved",
+                error: e
+            })
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: "Solutions not retrieved!!",
+            error: error
+        })
+    }
+})
+
 module.exports = router;
