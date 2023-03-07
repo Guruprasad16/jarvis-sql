@@ -21,7 +21,8 @@ router.post('/insertModel', (req, res) => {
         .then(()=>{
             res.status(200).json({
                 message: "Model is inserted",
-                modelId: modelId
+                modelId: modelId,
+                modelName: modelName
             })
         })
         .catch((e)=>{
@@ -35,7 +36,7 @@ router.post('/insertModel', (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).json({
-            message: "model not inserted",
+            message: "Model not inserted!!",
             error: error})
         // res.status(500).render("error.ejs", {errorMessage: error});
     }

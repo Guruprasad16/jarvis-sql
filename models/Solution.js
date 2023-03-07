@@ -22,10 +22,6 @@ module.exports = (sequelize,Sequelize) => {
             type: Sequelize.STRING(500),
             allowNull: false,
         },
-        solutionRunUrl: {
-            type: Sequelize.STRING(500),
-            allowNull: false
-        },
         solutionTags: {
             type: Sequelize.STRING(500),
             allowNull: false

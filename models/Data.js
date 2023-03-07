@@ -9,15 +9,23 @@ module.exports = (sequelize,Sequelize) => {
             primaryKey: true
         },
         datasetId: {
-            type: Sequelize.STRING(50),
+            type: Sequelize.STRING(500),
             unique: true,
             allowNull: false
         },
         datasetName: {
-            type: Sequelize.STRING(50),
+            type: Sequelize.STRING(500),
             allowNull: false,
             unique: true,
-          }
+          },
+        datasetVersion: {
+            type: Sequelize.STRING(10),
+            allowNull: false
+        },
+        datasetDescription: {
+            type: Sequelize.STRING(500),
+            allowNull: false
+        }
         })
     return Data;
     }
