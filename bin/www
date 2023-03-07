@@ -27,7 +27,12 @@ var server = http.createServer(app);
  */
 db.sequelize.sync({alter: true}).then((req)=>{
   // console.log("Sreq: ",req);
-  server.listen(port);
+  db.sequelize.query(`CREATE DATABASE IF NOT EXISTS jarvis`)
+  .then((respone)=>{
+    server.listen(port);
+  }).catch((err)=>{
+    console.log("Lerror: ",err);
+  })
 }).catch((err)=>{
   console.log("Serror: ",err);
 })

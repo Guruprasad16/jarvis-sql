@@ -9,25 +9,25 @@ module.exports = (sequelize,Sequelize) => {
             primaryKey: true
         },
         modelId: {
-            type: Sequelize.STRING(50),
+            type: Sequelize.STRING(500),
             unique: true,
             allowNull: false
         },
         modelName: {
-            type: Sequelize.STRING(50),
+            type: Sequelize.STRING(500),
             allowNull: false,
             unique: true,
           },
         modelViewUrl: {
-            type: Sequelize.STRING(50),
+            type: Sequelize.STRING(500),
             allowNull: false,
         },
         modelRunUrl: {
-            type: Sequelize.STRING(50),
+            type: Sequelize.STRING(500),
             allowNull: false
         },
         modelTags: {
-            type: Sequelize.STRING(50),
+            type: Sequelize.STRING(500),
             allowNull: false
         }
         })

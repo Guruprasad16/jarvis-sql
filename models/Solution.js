@@ -9,25 +9,25 @@ module.exports = (sequelize,Sequelize) => {
             primaryKey: true
         },
         solutionId: {
-            type: Sequelize.STRING(50),
+            type: Sequelize.STRING(500),
             unique: true,
             allowNull: false
         },
         solutionName: {
-            type: Sequelize.STRING(50),
+            type: Sequelize.STRING(500),
             allowNull: false,
             unique: true,
           },
         solutionViewUrl: {
-            type: Sequelize.STRING(50),
+            type: Sequelize.STRING(500),
             allowNull: false,
         },
         solutionRunUrl: {
-            type: Sequelize.STRING(50),
+            type: Sequelize.STRING(500),
             allowNull: false
         },
         solutionTags: {
-            type: Sequelize.STRING(50),
+            type: Sequelize.STRING(500),
             allowNull: false
         }
         })

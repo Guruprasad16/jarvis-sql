@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {Model} = require('../models/Model');
+const {Model} = require('../models');
 const {v4: uuidv4} = require('uuid');
 
 router.post('/insertModel', (req, res) => {
@@ -9,6 +9,7 @@ router.post('/insertModel', (req, res) => {
         
         let modelId = uuidv4();
         const { modelName, modelViewUrl, modelRunUrl, modelTags } = req.body;
+        console.log(modelId, req.body);
     
         Model.create({
             modelId: modelId,
@@ -32,10 +33,11 @@ router.post('/insertModel', (req, res) => {
             })
         })
     } catch (error) {
+        console.log(error);
         res.status(500).json({
             message: "model not inserted",
-            error: error
-        })
+            error: error})
+        // res.status(500).render("error.ejs", {errorMessage: error});
     }
 });
 
