@@ -23,6 +23,7 @@ var usersRouter = require('./routes/users');
 var signupRouter = require('./routes/signup');
 var modelRouter = require('./routes/model');
 var solutionRouter = require('./routes/solution');
+var datasetRouter = require('./routes/data');
 
 var app = express();
 
@@ -50,6 +51,7 @@ app.use('/', usersRouter);
 app.use('/', signupRouter);
 app.use('/model', modelRouter);
 app.use('/solution', solutionRouter);
+app.use('/data', datasetRouter);
 // app.post('/login', passport.authenticate('local',{
 //   successRedirect: '/',
 //   failureRedirect: '/login',
