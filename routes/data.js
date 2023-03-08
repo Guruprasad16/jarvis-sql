@@ -1,5 +1,5 @@
 var express = require("express");
-const Data = require("../models");
+const {Data} = require("../models");
 var router = express.Router();
 
 router.post("/insertData", function (req, res, next) {
