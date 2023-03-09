@@ -63,4 +63,80 @@ router.post('/retrieveDatasets', (req, res)=>{
     }
 })
 
+router.post('/editDataset', (req, res)=>{
+    try {
+        let update = {};
+        const { datasetId }  = req.body;
+
+        if(req.body.datasetName){
+            update.datasetName = req.body.datasetName;
+        }
+        if(req.body.datasetVersion){
+            update.datasetVersion = req.body.datasetVersion;
+        }
+        if(req.body.datasetDescription){
+            update.datasetDescription = req.body.datasetDescription;
+        }
+
+        Data.update( update, {
+            where: {
+                datasetId: datasetId
+            }
+        })
+        .then((respone)=>{
+            res.status(200).json({
+                message: "Dataset is updated",
+                datasetId: datasetId,
+                data: respone
+            })
+        })
+        .catch((e)=>{
+            console.log(e);
+            res.status(500).json({
+                message: "Dataset not updated",
+                error: e
+            })
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Dataset not updated!!",
+            error: error
+        })
+    }
+})
+
+router.post('/deleteDataset', (req, res)=>{
+    try {
+    
+        const { datasetId }  = req.body;
+
+        Data.destroy({
+            where: {
+                datasetId: datasetId
+            }
+        })
+        .then((respone)=>{
+            res.status(200).json({
+                message: "Dataset is deleted",
+                datasetId: datasetId,
+                data: respone
+            })
+        })
+        .catch((e)=>{
+            console.log(e);
+            res.status(500).json({
+                message: "Dataset not deleted",
+                error: e
+            })
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Dataset not deleted!!",
+            error: error
+        })
+    }
+})
+
 module.exports = router;

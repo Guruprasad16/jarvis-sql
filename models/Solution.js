@@ -25,6 +25,10 @@ module.exports = (sequelize,Sequelize) => {
         solutionTags: {
             type: Sequelize.STRING(500),
             allowNull: false
+        },
+        solutionDescription: {
+            type: Sequelize.STRING(500),
+            allowNull: false
         }
         })
     return Solution;

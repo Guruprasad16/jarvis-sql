@@ -1,5 +1,4 @@
 module.exports = (sequelize,Sequelize) => {
-    console.log("123");
 
 const User = sequelize.define("User", {
 

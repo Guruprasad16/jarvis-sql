@@ -7,13 +7,14 @@ router.post('/insertSolution', (req, res) => {
     try {
         
         let solutionId = uuidv4();
-        const { solutionName, solutionViewUrl, solutionTags } = req.body;
+        const { solutionName, solutionViewUrl, solutionTags, solutionDescription } = req.body;
     
         Solution.create({
             solutionId: solutionId,
             solutionName: solutionName,
             solutionViewUrl: solutionViewUrl,
-            solutionTags: solutionTags
+            solutionTags: solutionTags,
+            solutionDescription: solutionDescription
         })
         .then(()=>{
             res.status(200).json({
@@ -60,6 +61,82 @@ router.post('/retrieveSolutions', (req, res)=>{
     } catch (error) {
         res.status(500).json({
             message: "Solutions not retrieved!!",
+            error: error
+        })
+    }
+})
+
+router.post('/editSolution', (req, res)=>{
+    try {
+        let update = {};
+        const { solutionId }  = req.body;
+
+        if(req.body.solutionName){
+            update.solutionName = req.body.solutionName;
+        }
+        if(req.body.solutionVersion){
+            update.solutionVersion = req.body.solutionVersion;
+        }
+        if(req.body.solutionDescription){
+            update.solutionDescription = req.body.solutionDescription;
+        }
+
+        Solution.update( update, {
+            where: {
+                solutionId: solutionId
+            }
+        })
+        .then((respone)=>{
+            res.status(200).json({
+                message: "Solution is updated",
+                solutionId: solutionId,
+                data: respone
+            })
+        })
+        .catch((e)=>{
+            console.log(e);
+            res.status(500).json({
+                message: "Solution not updated",
+                error: e
+            })
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Solution not updated!!",
+            error: error
+        })
+    }
+})
+
+router.post('/deleteSolution', (req, res)=>{
+    try {
+    
+        const { solutionId }  = req.body;
+
+        Solution.destroy({
+            where: {
+                solutionId: solutionId
+            }
+        })
+        .then((respone)=>{
+            res.status(200).json({
+                message: "Solution is deleted",
+                solutionId: solutionId,
+                data: respone
+            })
+        })
+        .catch((e)=>{
+            console.log(e);
+            res.status(500).json({
+                message: "Solution not deleted",
+                error: e
+            })
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Solution not deleted!!",
             error: error
         })
     }

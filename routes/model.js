@@ -66,4 +66,79 @@ router.post('/retrieveModels', (req, res)=>{
     }
 })
 
+router.post('/editModel', (req, res)=>{
+    try {
+    
+        let update = {};
+        const { modelId }  = req.body;
+
+        if(req.body.modelName){
+            update.modelName = req.body.modelName;
+        }
+        if(req.body.modelTags){
+            update.modelTags = req.body.modelTags;
+        }
+
+        Model.update(update, {
+            where: {
+                modelId: modelId
+            }
+        })
+        .then((respone)=>{
+            res.status(200).json({
+                message: "Model is updated",
+                modelId: modelId,
+                modelName: modelName,
+                data: respone
+            })
+        })
+        .catch((e)=>{
+            res.status(500).json({
+                message: "Model not updated",
+                error: e
+            })
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Model not updated!!",
+            error: error
+        })
+    }
+})
+
+
+router.post('/deleteModel', (req, res)=>{
+    try {
+    
+        const { modelId }  = req.body;
+
+        Model.destroy({
+            where: {
+                modelId: modelId
+            }
+        })
+        .then((respone)=>{
+            res.status(200).json({
+                message: "Model is deleted",
+                modelId: modelId,
+                data: respone
+            })
+        })
+        .catch((e)=>{
+            console.log(e);
+            res.status(500).json({
+                message: "Model not deleted",
+                error: e
+            })
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Model not deleted!!",
+            error: error
+        })
+    }
+})
+
 module.exports = router;
