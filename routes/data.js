@@ -84,11 +84,20 @@ router.post('/editDataset', (req, res)=>{
             }
         })
         .then((respone)=>{
-            res.status(200).json({
-                message: "Dataset is updated",
-                datasetId: datasetId,
-                data: respone
-            })
+            if(respone[0]!=0){
+                res.status(200).json({
+                    message: "Dataset is updated",
+                    datasetId: datasetId,
+                    data: respone
+                })
+            }
+            else{
+                res.status(422).json({
+                    message: "Dataset ID is invalid",
+                    datasetId: datasetId,
+                    data: respone
+                })
+            }
         })
         .catch((e)=>{
             console.log(e);
@@ -117,11 +126,20 @@ router.post('/deleteDataset', (req, res)=>{
             }
         })
         .then((respone)=>{
-            res.status(200).json({
-                message: "Dataset is deleted",
-                datasetId: datasetId,
-                data: respone
-            })
+            if(respone!=0){
+                res.status(200).json({
+                    message: "Dataset is deleted",
+                    datasetId: datasetId,
+                    data: respone
+                })
+            }
+            else{
+                res.status(422).json({
+                    message: "Dataset ID is invalid",
+                    datasetId: datasetId,
+                    data: respone
+                })
+            }
         })
         .catch((e)=>{
             console.log(e);

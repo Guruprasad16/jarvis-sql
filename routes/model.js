@@ -85,14 +85,23 @@ router.post('/editModel', (req, res)=>{
             }
         })
         .then((respone)=>{
-            res.status(200).json({
-                message: "Model is updated",
-                modelId: modelId,
-                modelName: modelName,
-                data: respone
-            })
+            if(respone[0]!=0){
+                res.status(200).json({
+                    message: "Model is updated",
+                    modelId: modelId,
+                    data: respone
+                })
+            }
+            else{
+                res.status(422).json({
+                    message: "Model ID is invalid",
+                    modelId: modelId,
+                    data: respone
+                })
+            }
         })
         .catch((e)=>{
+            console.log(e);
             res.status(500).json({
                 message: "Model not updated",
                 error: e
@@ -119,11 +128,20 @@ router.post('/deleteModel', (req, res)=>{
             }
         })
         .then((respone)=>{
-            res.status(200).json({
-                message: "Model is deleted",
-                modelId: modelId,
-                data: respone
-            })
+            if(respone!=0){
+                res.status(200).json({
+                    message: "Model is deleted",
+                    modelId: modelId,
+                    data: respone
+                })
+            }
+            else{
+                res.status(422).json({
+                    message: "Model ID is invalid",
+                    modelId: modelId,
+                    data: respone
+                })
+            }
         })
         .catch((e)=>{
             console.log(e);
