@@ -25,6 +25,10 @@ module.exports = (sequelize,Sequelize) => {
         datasetDescription: {
             type: Sequelize.STRING(500),
             allowNull: false
+        },
+        datasetUrl: {
+            type: Sequelize.STRING(500),
+            allowNull: false
         }
         })
     return Data;

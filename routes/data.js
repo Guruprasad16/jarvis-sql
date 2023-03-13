@@ -77,6 +77,9 @@ router.post('/editDataset', (req, res)=>{
         if(req.body.datasetDescription){
             update.datasetDescription = req.body.datasetDescription;
         }
+        if(req.body.datasetUrl){
+            update.datasetUrl = req.body.datasetUrl;
+        }
 
         Data.update( update, {
             where: {
