@@ -5,14 +5,15 @@ var router = express.Router();
 router.post("/insertData", function (req, res, next) {
 
     try {
-        const { datasetId, datasetName, datasetVersion, datasetDescription } =
+        const { datasetId, datasetName, datasetVersion, datasetDescription, datasetUrl } =
         req.body;
 
         Data.create({
             datasetId: datasetId,
             datasetName: datasetName,
             datasetVersion: datasetVersion,
-            datasetDescription: datasetDescription
+            datasetDescription: datasetDescription,
+            datasetUrl: datasetUrl
         })
         .then(()=>{
             res.status(200).json({
