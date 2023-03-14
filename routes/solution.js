@@ -6,13 +6,14 @@ const { Solution } = require("../models");
 router.post("/insertSolution", (req, res) => {
   try {
     let solutionId = uuidv4();
-    const { solutionName, solutionViewUrl, solutionTags, solutionDescription } =
+    const { solutionName, solutionViewUrl, solutionRunUrl, solutionTags, solutionDescription } =
       req.body;
 
     Solution.create({
       solutionId: solutionId,
       solutionName: solutionName,
       solutionViewUrl: solutionViewUrl,
+      solutionRunUrl: solutionRunUrl,
       solutionTags: solutionTags,
       solutionDescription: solutionDescription,
     })
@@ -77,6 +78,12 @@ router.post("/editSolution", (req, res) => {
     }
     if (req.body.solutionDescription) {
       update.solutionDescription = req.body.solutionDescription;
+    }
+    if (req.body.solutionViewUrl) {
+        update.solutionViewUrl = req.body.solutionViewUrl
+    }
+    if (req.body.solutionRunUrl) {
+        update.solutionRunUrl = req.body.solutionRunUrl
     }
 
     Solution.update(update, {

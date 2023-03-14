@@ -3,7 +3,7 @@
     "username": "root",
     "password": "root",
     "database": "jarvis",
-    "host": "localhost",
+    "host": "3.108.153.122",
     "dialect": "mysql"
   },
   "test": {

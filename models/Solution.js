@@ -29,6 +29,10 @@ module.exports = (sequelize,Sequelize) => {
         solutionDescription: {
             type: Sequelize.STRING(500),
             allowNull: false
+        },
+        solutionRunUrl: {
+            type: Sequelize.STRING(500),
+            allowNull: false
         }
         })
     return Solution;
